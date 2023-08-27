@@ -85,9 +85,13 @@ def decrypt_file(file_path: str, encrypt_key: bytes) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
-        generate_key()
-        print("Key file generated successfully in current directory!")
+        print('Hi')
+        print('Bye')
         sys.exit(0)
+
+    if sys.argv[1] == "--generate-key" and sys.argv[2]:
+        generate_key(sys.argv[2])
+        sys.exit("Key file generated successfully!")
 
     if len(sys.argv) != 4:
         sys.exit(f"Incorrect number of arguments.\n\n{sys.argv}")
@@ -119,9 +123,3 @@ if __name__ == "__main__":
         decrypt_file(FILE, encryption_key)
     elif FLAG == "--encrypt":
         encrypt_file(FILE, encryption_key)
-
-    # ENCRYPTION_KEY = b'...'  # Load the encryption key from a secure source
-    # encrypt_file('options.ini', ENCRYPTION_KEY)
-    # encrypt_file('emails.json', ENCRYPTION_KEY)
-    # decrypt_file('options.ini', ENCRYPTION_KEY)
-    # decrypt_file('emails.json', ENCRYPTION_KEY)
