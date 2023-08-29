@@ -45,7 +45,7 @@ while True:
 
         last_id = get_last_id(EMAILS_FILE)
         num = last_id + 1
-        while num < 250:
+        while num < 1200:
             # Before scraping the data, check if we need to load more rows
             while num >= len(agents) - 1:
                 try:
@@ -70,9 +70,6 @@ while True:
 
                 except Exception as e:
                     print("Error clicking 'View more' button:", e)
-
-            if num >= 250:
-                break
 
             try:
                 agent = agents[num]
