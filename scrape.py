@@ -27,14 +27,54 @@ driver: webdriver.Chrome = webdriver.Chrome(service=service)
 handle_login(driver, COOKIE_FILE, EMAIL, PASSWORD, LOGIN_URL)
 driver.get(MAIN_URL)
 
-NAMES_XPATH: str = "//div[@class='sc-ksYbfQ haFBVt']"
-EMAIL_XPATH: str = "//p[contains(text(), 'Email:')]/following-sibling::p/a"
-AGENT_NAME_XPATH: str = ".//span[@class='MuiButton-label']/b"
+NAMES_XPATH = "//div[@class='sc-ksYbfQ haFBVt']"
+EMAIL_XPATH = "//p[contains(text(), 'Email:')]/following-sibling::p/a"
+AGENT_NAME_XPATH = ".//span[@class='MuiButton-label']/b"
+# FILTER_BUTTON_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/a'
+# FILTER_ONE_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div[1]/div'
+# FILTER_TWO_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div/div[1]/div'
+# # FILTER_ONE_OPTION_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div[1]'
+# FILTER_ONE_OPTION_XPATH = '//*[@id="-smjGWTly"]/div/div[8]'
+# # FILTER_TWO_OPTION_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/div/div/div[3]/div/div[1]'
+# FILTER_TWO_OPTION_XPATH = '//*[@id="pxJoA7jVvU"]/div/div[8]'
+# APPLY_FILTERS_XPATH = '//*[@id="main-view"]/div[1]/ui-view/section/md-content/md-content/ui-view/agentfarm/section/div[4]/div/react-agent-insights-table/div/div[1]/div[1]/div[2]/div/div/div/div[9]/a[2]'
 
 # Wait for the agents list to be present
 agents: WebDriverWait = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
     EC.presence_of_all_elements_located((By.XPATH, NAMES_XPATH))
 )
+
+# filter_button = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, FILTER_BUTTON_XPATH))
+# )
+# filter_button.click()
+
+# filter_1 = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, FILTER_ONE_XPATH))
+# )
+# filter_1.click()
+# time.sleep(3)
+# filter_1_option = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, FILTER_ONE_OPTION_XPATH))
+# )
+# filter_1_option.click()
+# time.sleep(3)
+# filter_2 = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, FILTER_TWO_XPATH))
+# )
+# filter_2.click()
+# time.sleep(3)
+# filter_2_option = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, FILTER_TWO_OPTION_XPATH))
+# )
+# filter_2_option.click()
+# time.sleep(3)
+# apply_filter_button = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
+#     EC.element_to_be_clickable((By.XPATH, APPLY_FILTERS_XPATH))
+# )
+# apply_filter_button.click()
+
+time.sleep(20)
 
 while True:
     try:
@@ -118,6 +158,8 @@ while True:
                     )
                 )
 
+                if num == 5:
+                    break
                 time.sleep(2)
                 num += 1
 
