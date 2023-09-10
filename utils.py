@@ -11,10 +11,11 @@ def get_last_id(filename: str) -> int:
         return 0
 
     with open(filename, mode="r", encoding="utf-8") as file:
-        # emails = json.load(file)
-        emails = file.readlines()
-        email = json.loads(emails[-1])
+        if emails := file.readlines():
+            email = json.loads(emails[-1])
 
+        else:
+            return 0
     return email["id"]
 
 
