@@ -38,7 +38,7 @@ agents = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
 )
 
 # Wait a few seconds so that the user can manually apply filters
-time.sleep(15)
+time.sleep(30)
 
 while True:
     try:
