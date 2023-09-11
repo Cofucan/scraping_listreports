@@ -51,7 +51,7 @@ while True:
         num = last_id + 1 if last_id > 0 else 0
         while num < 1200:
             # Before scraping the data, check if we need to load more rows
-            while num >= len(agents) - 1:
+            while num >= len(agents):
                 try:
                     # Find the "View more" button and click it
                     view_more_button = WebDriverWait(
