@@ -15,11 +15,6 @@ def json_to_csv(json_file_path: str, csv_file_path: str) -> None:
 
     Returns:
         None
-
-    Example:
-        ```python
-        json_to_csv("input.json", "output.csv")
-        ```
     """
     # Check if the CSV file exists
     csv_exists: bool = os.path.exists(csv_file_path)
@@ -39,7 +34,8 @@ def json_to_csv(json_file_path: str, csv_file_path: str) -> None:
     # Determine the keys for the CSV header
     csv_header = data_list[0].keys()
 
-    # Open the CSV file for writing in append mode if it exists, or create a new file if it doesn't exist
+    # Open the CSV file for writing in append mode if it exists
+    # or create a new file if it doesn't exist
     with open(
         csv_file_path, "a" if csv_exists else "w", newline="", encoding="utf-8"
     ) as csv_file:
