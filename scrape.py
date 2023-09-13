@@ -1,5 +1,6 @@
 """Scrapes data from ListReports.com"""
 
+
 import json
 import time
 
@@ -31,6 +32,7 @@ driver.get(MAIN_URL)
 NAMES_XPATH = "//div[@class='sc-ksYbfQ haFBVt']"
 EMAIL_XPATH = "//p[contains(text(), 'Email:')]/following-sibling::p/a"
 AGENT_NAME_XPATH = ".//span[@class='MuiButton-label']/b"
+PHONE_XPATH = "//p[@class='MuiTypography-root sc-esoVGF jULLov MuiTypography-body1']"
 
 # Wait for the agents list to be present
 agents = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
@@ -94,6 +96,12 @@ while True:
                     EC.element_to_be_clickable((By.XPATH, EMAIL_XPATH))
                 )
 
+                phone = driver.find_element(
+                    By.XPATH, PHONE_XPATH
+                ).text
+
+                phone = "".join(phone.split("-"))
+
                 # Get the href attribute of the <a> element
                 email_href = email_link.get_attribute("href")
 
@@ -105,6 +113,7 @@ while True:
                     "id": num,
                     "name": agent_name,
                     "email": email_address,
+                    "phone": phone,
                 }
 
                 # Save the collected emails to a JSON file
