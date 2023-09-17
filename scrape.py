@@ -65,14 +65,14 @@ while True:
                     )
                     view_more_button.click()
 
+                    time.sleep(2)  # Give time for more rows to load
+
                     # Wait for the agents list to be present
                     agents = WebDriverWait(driver, GLOBAL_TIMEOUT).until(
                         EC.presence_of_all_elements_located(
                             (By.XPATH, NAMES_XPATH)
                         )
                     )
-
-                    time.sleep(2)  # Give time for more rows to load
 
                 except Exception as e:
                     print("Error clicking 'View more' button:", e)
